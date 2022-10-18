@@ -45,10 +45,11 @@ const ToDoForm = (props) => {
       <label>Title: </label>
       <input
         type="text"
+        value={title}
         onChange={(e) => {
           setTitle(e.target.value);
         }}
-      ></input>
+      />
       <br />
       <label>Priority: </label>
       <select
@@ -64,14 +65,18 @@ const ToDoForm = (props) => {
       <br />
       <label>Description: </label>
       <textarea
+        value={description}
         onChange={(event) => {
           setDescription(event.target.value);
         }}
       />
       <br />
-      <button onClick={()=>{
-          props.handleAddToDo(title, priority, description)
-        }}>Add ToDo
+      <button
+        onClick={() => {
+          props.handleAddToDo(title, priority, description);
+        }}
+      >
+        Add ToDo
       </button>
     </div>
   );
@@ -102,12 +107,12 @@ const App = () => {
       completedDate: null,
     };
     const toDoListCopy = [...toDoList, newToDo];
-   setToDoList(toDoListCopy);
+    setToDoList(toDoListCopy);
   };
 
   return (
     <div className="App-header">
-      <ToDoForm />
+      <ToDoForm handleAddToDo={handleAddToDo} />
       <ToDoListContainer toDoList={toDoList} />
     </div>
   );
